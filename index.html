@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#f7f6f2" />
+    <meta name="description" content="A thoughtful little travel expense tracker with live currency conversion." />
+    <title>Elsewhere — travel expense tracker</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="./style.css" />
+    <script type="module" src="./src/main.js"></script>
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="topbar">
+        <a class="brand" href="#top" aria-label="Elsewhere home"><span class="brand-mark">e</span> elsewhere<span class="brand-period">.</span></a>
+        <span class="top-note"><span class="live-dot"></span> YOUR TRAVEL LEDGER</span>
+      </header>
+
+      <main id="top">
+        <section class="intro">
+          <div>
+            <p class="eyebrow">A LITTLE MORE CLARITY, ANYWHERE</p>
+            <h1>Spend abroad.<br /><span>Stay in the know.</span></h1>
+            <p class="intro-copy">Keep the small things from getting lost in translation. Log a spend, and see what it means back home.</p>
+          </div>
+          <div class="postmark" aria-hidden="true"><span>OUT OF<br />OFFICE</span><span class="postmark-sun">✳</span></div>
+        </section>
+
+        <section class="summary-card" aria-labelledby="total-heading">
+          <div class="summary-top"><span id="total-heading" class="eyebrow">YOUR TRIP SO FAR</span><span id="expense-count" class="count-pill">0 ENTRIES</span></div>
+          <div class="summary-main"><div><span class="summary-label">Total in</span><label class="sr-only" for="home-currency">Home currency</label><select id="home-currency" class="home-select" aria-label="Choose home currency"><option>KES</option><option>USD</option><option>EUR</option><option>GBP</option><option>CAD</option><option>AUD</option><option>JPY</option><option>CHF</option><option>INR</option><option>ZAR</option></select></div><strong id="total-amount" class="total-amount">—</strong></div>
+          <div class="summary-bottom"><span id="rate-status" class="rate-status" role="status"><span class="status-dot"></span> Getting the latest exchange rate…</span><button id="refresh-rates" class="text-button" type="button">Refresh rates ↗</button></div>
+        </section>
+
+        <section class="workspace" aria-label="Expense tracker">
+          <div class="entry-panel panel">
+            <div class="section-heading"><div><p class="eyebrow">THE DETAILS</p><h2>Add a little note</h2></div><span class="heading-icon" aria-hidden="true">＋</span></div>
+            <form id="expense-form">
+              <label class="field-label" for="description">What was it for?</label>
+              <input id="description" name="description" type="text" maxlength="60" placeholder="A really good coffee…" required />
+              <div class="form-row">
+                <div class="field-group"><label class="field-label" for="amount">How much?</label><input id="amount" name="amount" type="number" min="0.01" step="0.01" placeholder="0.00" required /></div>
+                <div class="field-group"><label class="field-label" for="currency">Paid in</label><select id="currency" name="currency"><option>USD</option><option>EUR</option><option>GBP</option><option>KES</option><option>CAD</option><option>AUD</option><option>JPY</option><option>CHF</option><option>INR</option><option>ZAR</option></select></div>
+              </div>
+              <label class="field-label" for="category">The kind of thing</label>
+              <select id="category" name="category"><option>Food</option><option>Transport</option><option>Stay</option><option>Shopping</option><option>Activities</option><option>Other</option></select>
+              <button class="add-button" type="submit"><span>Add to my trip</span><span aria-hidden="true">↗</span></button>
+              <p id="form-message" class="form-message" role="alert"></p>
+            </form>
+          </div>
+
+          <div class="list-panel panel">
+            <div class="section-heading list-heading"><div><p class="eyebrow">THE LITTLE THINGS ADD UP</p><h2>Your expenses <span id="list-count" class="list-count">(0)</span></h2></div><label class="sr-only" for="category-filter">Filter expenses by category</label><select id="category-filter" class="filter-select"><option value="all">All notes</option><option>Food</option><option>Transport</option><option>Stay</option><option>Shopping</option><option>Activities</option><option>Other</option></select></div>
+            <div id="expense-list" class="expense-list" aria-live="polite"></div>
+            <div id="empty-state" class="empty-state"><span class="empty-sun" aria-hidden="true">☼</span><p class="empty-title">A fresh page.</p><p>Your trip notes will find a home here.</p></div>
+            <p class="list-footnote">Your entries stay in this browser, just for you.</p>
+          </div>
+        </section>
+      </main>
+      <footer><span>MADE FOR THE MANY PLACES YOU'LL GO</span><span>ELSEWHERE © 2026</span></footer>
+    </div>
+  </body>
+</html>
